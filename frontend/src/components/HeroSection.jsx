@@ -1,26 +1,23 @@
 import React from 'react'
-
+import image from "../assets/hero.jpg"
 const HeroSection = () => {
   return (
     <div className=" mt-214">
       <section className="max-w-6xl w-full flex flex-col md:flex-row items-center gap-8">
         {/* Left Content */}
-        <div className="md:w-1/2 text-center md:text-left">
-          <p className="text-indigo-500 font-semibold uppercase">Very proud to introduce</p>
-          <h1 className="text-4xl font-bold text-white mt-2 leading-tight">
-            Seamless Learning For Brighter Futures
+        <div className="md:w-1/2 text-center md:text-left pb-5">
+        <div className='flex flex-row pb-9'>
+        <p className="text-black font-semibold  text-5xl">Welcome to </p>
+        <p className="text-cyan-600 font-semibold  text-5xl pl-3">DataFlowX</p>
+        </div>
+        
+          <h1 className="text-lg text-black mt-2 leading-tight">
+          DataFlowX transforms real-time data monitoring with seamless capture, transmission, and visualization. Get instant updates, AI-powered anomaly detection, and robust performance for healthcare, IoT, and transportation.
           </h1>
-          <p className="text-gray-300 mt-4">
-            Our innovative platform offers an effortless and seamless approach to learning,
-            empowering students of all ages to simplify education and unlock their full potential.
-          </p>
           {/* Buttons */}
-          <div className="mt-6 flex justify-center md:justify-start gap-4">
+          <div className="mt-13  flex justify-center md:justify-start gap-4">
             <a href="#start" className="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition">
               Start Now
-            </a>
-            <a href="#tour" className="border border-gray-400 text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition">
-              Take Tour
             </a>
           </div>
         </div>
@@ -28,11 +25,12 @@ const HeroSection = () => {
         {/* Right Content (Image) */}
         <div className="md:w-1/2 flex justify-center">
           <img
-            src="imgs/background_image.jpeg"
+            src={image}
             alt="img"
-            className="rounded-xl shadow-lg w-[600px] h-[600px] object-cover"
+            className="z-0 rounded-xl drop-shadow-xl w-[500px] h-[500px] object-cover"
           />
         </div>
+
       </section>
     </div>
   )
