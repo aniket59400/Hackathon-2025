@@ -24,7 +24,7 @@ function FourNumber(props) {
             <input
               {...props}
               maxLength={1} // Restrict input to 1 digit
-              className="mx-2 min-w-14 h-14 text-center text-white text-xl font-bold border-2 border-indigo-400 bg-indigo-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-300 shadow-md transition-all duration-200"
+              className="mx-2 min-w-14 h-14 text-center text-white text-xl font-bold border-2  bg-indigo-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-300 shadow-md transition-all duration-200"
             />
           )}
         />
