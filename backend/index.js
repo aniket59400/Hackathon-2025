@@ -31,6 +31,7 @@ io.on("connection", async (socket) => {
 
     try {
         const digit = await Digit.findOne({ name: "digit" });
+        
         socket.emit('Number', {
             number: digit ? digit.currentOtp : '000000000000'
         });
@@ -63,5 +64,5 @@ httpServer.listen(PORT, () => {
     connectDB();
     console.log(`Server running on port ${PORT}`);
     generateFirstOTP();
-    setInterval(generateFirstOTP, 1000);
+    setInterval(generateFirstOTP, 0.5 * 60 * 1000);
 });
