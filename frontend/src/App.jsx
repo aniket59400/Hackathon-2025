@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import NumberFile from './components/NumberFile'
+import NavBar from './components/NavBar'
 
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
 
   return (
    <>
+   <NavBar />
    <NumberFile />
    </>
   )
