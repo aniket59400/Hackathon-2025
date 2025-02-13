@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const { connectDB } = require('./config/dbConnect');
 const {generateOTP} = require('./controllers/utils/ChangeNumber');
 const blog = require('./Route/blog');
+const { generateFirstOTP } = require('./controllers/utils/FirstOtp');
 
 dotenv.config();
 
@@ -15,9 +16,11 @@ app.get('/', (req, res) => {
 
 app.use('/api/v1', blog);
 
+
 app.listen(PORT, () => {
     connectDB();
     console.log(`Server started on port ${PORT}`);
-    generateOTP();
+    // generateOTP();
+    generateFirstOTP();
     setInterval(generateOTP, 1*1000);
 });
