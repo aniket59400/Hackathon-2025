@@ -1,5 +1,10 @@
 const otpGenerator = require('otp-generator');
 const Digit = require('../../Models/digitModel');
+let io;
+
+exports.setIO = (socketIO) => {
+    io = socketIO;
+};
 
 exports.generateFirstOTP = async () => {
     try {
@@ -10,16 +15,16 @@ exports.generateFirstOTP = async () => {
             digits: true
         });
 
-        // Find existing digit document or create new one
         let digit = await Digit.findOne({ name: "digit" });
 
         if (digit) {
-            // If document exists, update it
             digit.currentOtp = otp;
             digit.history = digit.history ? [...digit.history, otp] : [otp];
             await digit.save();
+            if (io) {
+                io.emit('Number', { number: otp });
+            }
         } else {
-            // If no document exists, create new one
             digit = await Digit.create({
                 name: "digit",
                 currentOtp: otp,

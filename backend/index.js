@@ -4,7 +4,7 @@ const { createServer } = require("http");
 const { Server } = require("socket.io");
 const { connectDB } = require('./config/dbConnect');
 const blog = require('./Route/blog');
-const { generateFirstOTP } = require('./controllers/utils/FirstOtp');
+const FirstOtp = require('./controllers/utils/FirstOtp');
 const Digit = require('./Models/digitModel');
 
 dotenv.config();
@@ -63,6 +63,7 @@ io.on("connection", async (socket) => {
 httpServer.listen(PORT, () => {
     connectDB();
     console.log(`Server running on port ${PORT}`);
-    generateFirstOTP();
-    setInterval(generateFirstOTP, 0.5 * 60 * 1000);
+    FirstOtp.setIO(io);
+    FirstOtp.generateFirstOTP();
+    setInterval(FirstOtp.generateFirstOTP, 0.5 * 60 * 1000);
 });
