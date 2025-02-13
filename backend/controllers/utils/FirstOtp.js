@@ -6,14 +6,28 @@ exports.setIO = (socketIO) => {
     io = socketIO;
 };
 
+function hasFourConsecutiveRepeatingDigits(otp) {
+    return /(\d)\1{3}/.test(otp); // Regex to check for four consecutive repeating digits
+}
+
+function checkAnamoly(otp) {
+    if (hasFourConsecutiveRepeatingDigits(otp)) {
+        return true;
+    }
+    return false;
+}
+
 exports.generateFirstOTP = async () => {
     try {
-        const otp = otpGenerator.generate(12, {
-            upperCaseAlphabets: false,
-            specialChars: false,
-            lowerCaseAlphabets: false,
-            digits: true
-        });
+
+        do {
+            otp = otpGenerator.generate(12, {
+                upperCaseAlphabets: false,
+                specialChars: false,
+                lowerCaseAlphabets: false,
+                digits: true
+            });
+        } while (checkAnamoly(otp));
 
         let digit = await Digit.findOne({ name: "digit" });
 
