@@ -13,7 +13,7 @@ function FourNumber(props) {
 
   return (
     <div className="w-full h-screen flex items-center justify-center">
-      <div className="flex flex-col items-center justify-center w-auto p-8 rounded-2xl bg-indigo-600 shadow-2xl shadow-indigo-500/40">
+      <div className="flex flex-col items-center justify-center w-auto p-8 rounded-2xl bg-sky-3600/50 border-1 shadow-2xl shadow-indigo-500/40 border-indigo-600">
         <h2 className="text-white text-xl font-semibold mb-4"></h2>
         <OtpInput
           value={otp}
@@ -24,7 +24,7 @@ function FourNumber(props) {
             <input
               {...props}
               maxLength={1} // Restrict input to 1 digit
-              className="min-w-12 h-14 text-center text-white text-xl font-bold border-2 border-indigo-400 bg-indigo-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-300 shadow-md transition-all duration-200"
+              className="mx-2 min-w-14 h-14 text-center text-white text-xl font-bold border-2 border-indigo-400 bg-indigo-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-300 shadow-md transition-all duration-200"
             />
           )}
         />
