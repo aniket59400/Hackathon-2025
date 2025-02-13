@@ -1,34 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import OtpInput from 'react-otp-input';
-import {io} from 'socket.io-client'
 
 
-function FourNumber() {
-  const [otp, setOtp] = useState("000000000000");
-  const socket = io("http://localhost:5000/");
-
-  socket.on("connection", (sock) => {
-    console.log(sock.id)
-    // sock.on('Number', (number) => {
-    //   console.log(number);
-    //   setOtp(number)
-    // })
-  })
-
-  socket.on('Number', (data) => {
-    console.log("Received OTP:", data.number);
-    setOtp(data.number);
-});
-
-
-
+function FourNumber(props) {
+  const [otp, setOtp] = useState(props.otp);
+  console.log(`props.otp: ${props.index}`, props.otp);
+  useEffect(() => {
+    setOtp(props.otp);
+  }, {otp})
   return (
     <div className="w-full h-screen flex items-center justify-center">
   <div className="flex flex-col items-center justify-center w-auto p-8 rounded-2xl bg-indigo-600 shadow-2xl shadow-indigo-500/40">
     <h2 className="text-white text-xl font-semibold mb-4"></h2>
     <OtpInput
       value={otp}
-      onChange={setOtp}
+      // onChange={setOtp}
       numInputs={4}
       renderSeparator={<span className="mx-2 text-white text-2xl"></span>}
       renderInput={(props) => (
