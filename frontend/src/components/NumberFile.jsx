@@ -1,6 +1,7 @@
-import React from 'react'
-import FourNumber from './FourNumber'
-import {io} from 'socket.io-client'
+import React from 'react';
+import { io } from 'socket.io-client';
+import FourNumber from './FourNumber';
+import HeroSection from './HeroSection';
 
 function NumberFile() {
 
@@ -23,7 +24,8 @@ function NumberFile() {
 
   return (
     <div className='bg-wight w-full h-screen flex items-center justify-center'>
-      <div className='w-10/12 h-full flex items-center justify-center' >
+      <div className='w-10/12 h-full flex-col flex items-center justify-center m-9' >
+        <HeroSection />
         <div className='flex items-center justify-center gap-4'>
           <FourNumber otp = {otp.slice(0, 4)} index = '1'/>
           

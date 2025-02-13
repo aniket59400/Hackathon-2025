@@ -1,8 +1,8 @@
-import { useState } from 'react'
-import NumberFile from './components/NumberFile'
-import NavBar from './components/NavBar'
-import {BrowserRouter, Route, Routes} from "react-router-dom";
-
+import { useState } from 'react';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import NavBar from './components/NavBar';
+import NoPage from "./components/NoPage";
+import NumberFile from './components/NumberFile';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -10,15 +10,15 @@ function App() {
   return (
    <>
    <NavBar />
+
+   {/* <HeroSection/> */}
    
-   <NumberFile />
    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<NumberFile />}/>
           <Route path="history" element={<History/>} />
           {/* <Route path="contact" element={<Contact />} /> */}
-          <Route path="*" element={<NoPage />} />
-        </Route>
+        <Route path="*" element={<NoPage />} />
       </Routes>
     </BrowserRouter>
    </>
