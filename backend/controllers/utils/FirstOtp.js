@@ -3,16 +3,16 @@ const Digit = require('../../Models/digitModel');
 
 exports.generateFirstOTP = async () => {
     try {
-        const otp = otpGenerator.generate(12, { 
-            upperCaseAlphabets: false, 
-            specialChars: false, 
-            lowerCaseAlphabets: false, 
-            digits: true 
+        const otp = otpGenerator.generate(12, {
+            upperCaseAlphabets: false,
+            specialChars: false,
+            lowerCaseAlphabets: false,
+            digits: true
         });
 
         // Find existing digit document or create new one
         let digit = await Digit.findOne({ name: "digit" });
-        
+
         if (digit) {
             // If document exists, update it
             digit.currentOtp = otp;
@@ -26,7 +26,7 @@ exports.generateFirstOTP = async () => {
                 history: [otp]
             });
         }
-    
+
         console.log("otp: ", otp);
         return otp;
     } catch (err) {

@@ -10,9 +10,15 @@ const Digit = require('./Models/digitModel');
 dotenv.config();
 
 const app = express();
-const server = createServer(app);
-const io = new Server(server);
-const PORT = process.env.PORT;
+const httpServer = createServer(app);
+const io = new Server(httpServer, {
+    cors: {
+        origin: process.env.FRONTEND_URL || "http://localhost:3000",
+        methods: ["GET", "POST"]
+    }
+});
+
+const PORT = process.env.PORT || 5000;
 
 app.get('/', (req, res) => {
     res.send('|| Shree Ganeshya Namaha ||');
@@ -21,24 +27,41 @@ app.get('/', (req, res) => {
 app.use('/api/v1', blog);
 
 io.on("connection", async (socket) => {
-    console.log("connected with id ", socket.id);
-    const digit = await Digit.findOne({ name: "digit" });
+    console.log("Client connected with ID:", socket.id);
 
-    if (digit) {
-        socket.emit('Number', { number: digit.currentOtp });
+    try {
+        const digit = await Digit.findOne({ name: "digit" });
+        socket.emit('Number', {
+            number: digit ? digit.currentOtp : '000000000000'
+        });
+
+        socket.on('frontendMessage', async (data) => {
+            try {
+                const digit = await Digit.findOne({ name: "digit" });
+                if (digit) {
+                    digit.currentOtp = data.number;
+                    await digit.save();
+                    io.emit('Number', { number: data.number });
+                }
+            } catch (error) {
+                console.error('Error handling frontend message:', error);
+                socket.emit('error', { message: 'Failed to process message' });
+            }
+        });
+
+        socket.on('disconnect', () => {
+            console.log('Client disconnected:', socket.id);
+        });
+
+    } catch (error) {
+        console.error('Error in socket connection:', error);
+        socket.emit('error', { message: 'Internal server error' });
     }
-    socket.emit('Number', { number: 12*'0' });
 });
 
-io.on("frontendMessage", async (number) => {
-    const digit = await Digit.findOne({ name: "digit" });
-    digit.currentOtp = number;
-})
-
-app.listen(PORT, () => {
+httpServer.listen(PORT, () => {
     connectDB();
-    console.log(`Server started on port ${PORT}`);
-    // generateOTP();
+    console.log(`Server running on port ${PORT}`);
     generateFirstOTP();
-    setInterval(generateFirstOTP, 1 * 1000);
+    setInterval(generateFirstOTP, 1000);
 });
