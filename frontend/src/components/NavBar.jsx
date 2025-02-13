@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const NavBar = () => {
   return (
@@ -14,12 +14,9 @@ const NavBar = () => {
       History
       <span className="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-cyan-300 group-hover:w-full transition-all duration-300"></span>
     </a>
-  </div>
-  
-  
-  
+  </div> 
   
   )
 }
 
-export default NavBar
+export default NavBar;
