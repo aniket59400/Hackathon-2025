@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import NumberFile from './components/NumberFile'
 
 
 function App() {
@@ -6,7 +7,7 @@ function App() {
 
   return (
    <>
-   
+   <NumberFile />
    </>
   )
 }
