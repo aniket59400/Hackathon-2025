@@ -2,7 +2,8 @@ const Digit = require('../Models/digitModel');
 
 exports.getHistory = async (req, res) => {
     try {
-        const {ith}  = req.body;
+        const { call } = req.query;
+        const ith = parseInt(call) || 1;
         const digit = await Digit.findOne({ name: "digit" });
 
 

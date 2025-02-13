@@ -9,9 +9,9 @@ function History() {
 
     const callHistory = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/v1/getHistory",  call);
-            setHistory(response.history || []);
-            setCall((prev) => prev + 1);
+            const response = await axios.get("http://localhost:5000/api/v1/getHistory", {  params: { call } });
+            setHistory(response.data.history || []);
+            
             console.log(response.data.history);
             
             console.log("data aya");
@@ -21,6 +21,7 @@ function History() {
             console.error("Error in getting history:", error);
             setError("Failed to load history");
         } finally {
+            setCall((prev) => prev + 1);
             setLoading(false);
         }
     };
