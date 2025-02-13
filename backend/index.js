@@ -1,7 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const { connectDB } = require('./config/dbConnect');
-const generateOTP = require('./controllers/utils/ChangeNumber');
+const {generateOTP} = require('./controllers/utils/ChangeNumber');
 const blog = require('./Route/blog');
 
 dotenv.config();
@@ -17,6 +17,7 @@ app.use('/api/v1', blog);
 
 app.listen(PORT, () => {
     connectDB();
-    setTimeout(generateOTP(), 15*60*1000);
     console.log(`Server started on port ${PORT}`);
+    generateOTP();
+    setInterval(generateOTP, 1*1000);
 });

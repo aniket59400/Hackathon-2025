@@ -11,7 +11,6 @@ const digitSchema = new mongoose.Schema({
     },
     history: {
         type: Array,
-        required: true,
         default: [],
     }
 });
