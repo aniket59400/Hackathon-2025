@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   return (
@@ -10,10 +11,10 @@ const NavBar = () => {
     
     <h2 className="text-2xl font-bold  tracking-wide drop-shadow-lg">DataFlowX</h2>
   
-    <a href="#" className="text-lg font-medium  hover:text-indigo-600 transition duration-300 relative group">
+    <Link to={"/history"} className="text-lg font-medium  hover:text-indigo-600 transition duration-300 relative group">
       History
       <span className="absolute left-0 bottom-[-2px] w-0 h-[2px] bg-indigo-600 group-hover:w-full transition-all duration-300"></span>
-    </a>
+    </Link>
   </div> 
   
   )
