@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavBar from './components/NavBar';
 import NoPage from "./components/NoPage";
 import NumberFile from './components/NumberFile';
+import History from './components/History';
 
 function App() {
   const [count, setCount] = useState(0)
