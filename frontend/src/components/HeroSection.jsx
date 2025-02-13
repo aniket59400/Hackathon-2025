@@ -11,13 +11,15 @@ const HeroSection = () => {
         <p className="text-cyan-600 font-semibold  text-5xl pl-3">DataFlowX</p>
         </div>
         
-          <h1 className="text-lg text-black mt-2 leading-tight">
+          <h1 className="  indent-8 text-lg text-black mt-2 leading-tight">
           DataFlowX transforms real-time data monitoring with seamless capture, transmission, and visualization. Get instant updates, AI-powered anomaly detection, and robust performance for healthcare, IoT, and transportation.
           </h1>
           {/* Buttons */}
           <div className="mt-13  flex justify-center md:justify-start gap-4">
-            <a href="#start" className="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition">
-              Start Now
+            <a href="#live" className="bg-indigo-500 text-white px-6 py-3 rounded-lg 
+             hover:bg-indigo-700 active:scale-90 active:opacity-80 
+             transition-all duration-200 ease-in-out border-1 border-black">
+              Go Live
             </a>
           </div>
         </div>
