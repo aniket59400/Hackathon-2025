@@ -1,5 +1,6 @@
 import React from 'react'
 import image from "../assets/hero.jpg"
+import image from "../assets/hero.jpg"
 const HeroSection = () => {
   return (
     <div className=" mt-214">
@@ -28,10 +29,13 @@ const HeroSection = () => {
         <div className="md:w-1/2 flex justify-center">
           <img
             src={image}
+            src={image}
             alt="img"
+            className="z-0 rounded-xl drop-shadow-xl w-[500px] h-[500px] object-cover"
             className="z-0 rounded-xl drop-shadow-xl w-[500px] h-[500px] object-cover"
           />
         </div>
+
 
       </section>
     </div>

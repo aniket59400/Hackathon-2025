@@ -9,14 +9,19 @@ function History() {
 
     const callHistory = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/getHistory", { params: { call } });
+            const response = await axios.get("http://localhost:5000/api/v1/getHistory", {  params: { call } });
             setHistory(response.data.history || []);
-            setCall((prev) => prev + 1);
+            
+            console.log(response.data.history);
+            
+            console.log("data aya");
+            
             setError(null);
         } catch (error) {
             console.error("Error in getting history:", error);
             setError("Failed to load history");
         } finally {
+            setCall((prev) => prev + 1);
             setLoading(false);
         }
     };
@@ -29,7 +34,8 @@ function History() {
     if (error) return <div className="w-8/12 h-screen flex items-center justify-center text-red-500">{error}</div>;
 
     return (
-        <div className='w-8/12 h-screen overflow-scroll bg-amber-500'>
+        <div className='w-full h-screen flex items-center justify-center'>
+             <div className='w-8/12 h-screen overflow-scroll bg-amber-500'>
             {history.length === 0 ? (
                 <div className="p-4 text-center">No history available</div>
             ) : (
@@ -39,6 +45,7 @@ function History() {
                     </div>
                 ))
             )}
+        </div>
         </div>
     );
 }
